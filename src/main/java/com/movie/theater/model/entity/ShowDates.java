@@ -14,7 +14,6 @@ public class ShowDates extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(columnDefinition = "timestamp")
     private LocalDate showDate;
 
     @Column(columnDefinition = "varchar(255)")

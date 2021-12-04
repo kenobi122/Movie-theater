@@ -22,13 +22,11 @@ public class Promotion extends BaseEntity{
     @Column(columnDefinition = "int(20) default 0")
     private int discountLevel;
 
-    @Column(columnDefinition = "timestamp")
     private LocalDate endTime;
 
     @Column(columnDefinition = "varchar(255)")
     private String image;
 
-    @Column(columnDefinition = "timestamp")
     private LocalDate startTime;
 
     @Column(columnDefinition = "varchar(255)")

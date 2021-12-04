@@ -30,13 +30,11 @@ public class Movie extends BaseEntity{
     @Column(length = 10,nullable = false)
     private int duration;
 
-    @Column(columnDefinition = "timestamp")
     private LocalDate fromDate;
 
     @Column(nullable = false)
     private String movieProductionCompany;
 
-    @Column(columnDefinition = "timestamp")
     private LocalDate toDate;
 
     @Column(nullable = false)

@@ -18,7 +18,6 @@ public class Account extends BaseEntity{
     @Column(nullable = false)
     private String address;
 
-    @Column(columnDefinition = "timestamp")
     private LocalDate dateOfBirth;
 
     @Column(nullable = false)

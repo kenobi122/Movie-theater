@@ -20,13 +20,11 @@ public class Invoice extends BaseEntity {
     @Column(length = 10, nullable = false)
     private int addScore;
 
-    @Column(columnDefinition = "timestamp")
     private LocalDate bookingDate;
 
     @Column(nullable = false)
     private String movieName;
 
-    @Column(columnDefinition = "timestamp")
     private LocalDate scheduleShow;
 
     @Column(length = 1, nullable = false)
