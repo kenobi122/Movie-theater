@@ -6,9 +6,8 @@ import org.springframework.http.ResponseEntity;
 public class Response {
     private Response(){}
 
-
     public static <T> ResponseEntity<SystemResponse<T>> ok(){
-        return ResponseEntity.ok(new SystemResponse<>(200, "Delete OK"));
+        return ResponseEntity.ok(new SystemResponse<>(204, "Delete OK"));
     }
 
     public static <T> ResponseEntity<SystemResponse<T>> ok(T body){
