@@ -24,7 +24,7 @@ public class PromotionMapper {
     public PromotionResponse map(Promotion promotion) {
         PromotionResponse promotionResponse = new PromotionResponse();
 
-        promotionResponse.setId(promotion.getId());
+        promotionResponse.setId(promotion.getPromotionId());
         promotionResponse.setDetails(promotion.getDetails());
         promotionResponse.setDiscountLevel(promotion.getDiscountLevel());
         promotionResponse.setEndTime(promotion.getEndTime());

@@ -11,7 +11,7 @@ import javax.persistence.*;
 public class Roles extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int roleId;
 
     @Column(length = 10, nullable = false)
     private String roleName;

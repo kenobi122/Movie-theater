@@ -12,7 +12,7 @@ import java.time.LocalDate;
 public class ShowDates extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int showDateId;
 
     private LocalDate showDate;
 

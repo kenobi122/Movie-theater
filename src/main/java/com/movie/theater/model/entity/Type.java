@@ -11,7 +11,7 @@ import javax.persistence.*;
 public class Type extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int typeId;
 
     @Column(nullable = false)
     private String typeName;

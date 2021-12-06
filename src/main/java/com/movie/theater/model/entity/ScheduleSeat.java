@@ -10,11 +10,11 @@ import javax.persistence.*;
 @Entity
 public class ScheduleSeat extends BaseEntity{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(length = 10, nullable = false)
+    private String scheduleSeatId;
 
     @Column(columnDefinition = "varchar(255) not null")
-    private int movieId;
+    private String movieId;
 
     @Column(columnDefinition = "int(10) default 0")
     private int scheduleId;

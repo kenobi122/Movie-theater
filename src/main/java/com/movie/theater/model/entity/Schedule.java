@@ -11,7 +11,7 @@ import javax.persistence.*;
 public class Schedule extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int scheduleId;
 
     @Column(length = 1000,nullable = false)
     private String scheduleTime;

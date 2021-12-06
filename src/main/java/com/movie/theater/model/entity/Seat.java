@@ -11,7 +11,7 @@ import javax.persistence.*;
 public class Seat extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int seatId;
 
     @Column(length = 100, nullable = false)
     private int cinemaRoomId;
