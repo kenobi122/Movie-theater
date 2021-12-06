@@ -3,9 +3,11 @@ package com.movie.theater.service.impl;
 import com.movie.theater.exception.AppException;
 import com.movie.theater.model.common.ErrorCode;
 import com.movie.theater.model.entity.Account;
+import com.movie.theater.model.entity.Member;
 import com.movie.theater.model.request.AccountRequest;
 import com.movie.theater.repository.AccountRepository;
 import com.movie.theater.service.AccountService;
+import com.movie.theater.service.MemberInternalService;
 import com.movie.theater.service.mapper.AccountMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,15 +18,20 @@ public class AccountServiceImpl implements AccountService {
 
     private final AccountRepository repository;
     private final AccountMapper mapper;
+    private final MemberInternalService memberInternalService;
 
     @Override
-    public void create(AccountRequest request) {
+    public void createMember(AccountRequest request) {
         if(repository.findAccountByUsername(request.getAccount()).isPresent()){
             throw new AppException(ErrorCode.ACCOUNT_ALREADY_EXISTS);
         }
 
         Account account = mapper.map(request);
         repository.save(account);
+
+        Member member = new Member();
+        member.setAccountId(account.getAccountId());
+        memberInternalService.create(member);
 
     }
 }
