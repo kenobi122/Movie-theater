@@ -3,6 +3,7 @@ package com.movie.theater.model.entity;
 import com.movie.theater.model.common.Gender;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -12,7 +13,8 @@ import java.time.LocalDate;
 @Entity
 public class Account extends BaseEntity{
     @Id
-    @Column(length = 10)
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String accountId;
 
     @Column(nullable = false)
@@ -33,7 +35,6 @@ public class Account extends BaseEntity{
     @Column(nullable = false)
     private String identityCard;
 
-    @Column(nullable = false)
     private String image;
 
     @Column(nullable = false)
