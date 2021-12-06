@@ -2,6 +2,7 @@ package com.movie.theater.model.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
@@ -10,9 +11,10 @@ import javax.persistence.*;
 @Entity
 public class Employee extends BaseEntity{
     @Id
-    @Column(length = 10)
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
 
-    @Column(length = 10, nullable = false)
+    @Column(nullable = false)
     private String accountId;
 }

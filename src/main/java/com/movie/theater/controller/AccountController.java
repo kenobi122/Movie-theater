@@ -19,11 +19,18 @@ import javax.validation.Valid;
 public class AccountController {
     private final AccountService accountService;
 
-    @PostMapping("/register")
-    public ResponseEntity<SystemResponse<Object>> create(@Valid @RequestBody AccountRequest request){
+    @PostMapping("/register/member")
+    public ResponseEntity<SystemResponse<Object>> createMember(@Valid @RequestBody AccountRequest request){
          accountService.createMember(request);
 
          return Response.ok();
+    }
+
+    @PostMapping("/register/employee")
+    public ResponseEntity<SystemResponse<Object>> createEmployee(@Valid @RequestBody AccountRequest request){
+        accountService.createEmployee(request);
+
+        return Response.ok();
     }
 
 }
