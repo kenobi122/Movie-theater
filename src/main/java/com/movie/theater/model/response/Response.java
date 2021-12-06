@@ -7,7 +7,7 @@ public class Response {
     private Response(){}
 
     public static <T> ResponseEntity<SystemResponse<T>> ok(){
-        return ResponseEntity.ok(new SystemResponse<>(204, "Delete OK"));
+        return ResponseEntity.ok(new SystemResponse<>(200, "OK"));
     }
 
     public static <T> ResponseEntity<SystemResponse<T>> ok(T body){
@@ -17,5 +17,7 @@ public class Response {
     public static <T> ResponseEntity<SystemResponse<T>> fail(T body){
         return ResponseEntity.badRequest().body(new SystemResponse<>(400,"fail", body));
     }
+
+
 
 }

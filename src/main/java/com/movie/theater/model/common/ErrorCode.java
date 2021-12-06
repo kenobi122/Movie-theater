@@ -10,6 +10,8 @@ public class ErrorCode {
 
     public static final ApiError ACCOUNT_NOT_FOUND = new ApiError(HttpStatus.BAD_REQUEST, "Account or password not found");
     public static final ApiError WRONG_PASSWORD = new ApiError(HttpStatus.BAD_REQUEST, "Wrong password");
+    public static final ApiError ACCOUNT_ALREADY_EXISTS = new ApiError(HttpStatus.BAD_REQUEST, "account already exists ");
+
 
     public static final ApiError ANSWER_NOT_FOUND = new ApiError(HttpStatus.BAD_REQUEST, "answer not found");
     public static final ApiError DEPARTMENT_NOT_FOUND = new ApiError(HttpStatus.BAD_REQUEST, "department not found");
