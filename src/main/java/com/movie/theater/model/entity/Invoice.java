@@ -11,11 +11,11 @@ import java.time.LocalDate;
 @Entity
 public class Invoice extends BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(length = 10)
+    private String invoiceId;
 
-    @Column(nullable = false)
-    private int accountId;
+    @Column(length = 10, nullable = false)
+    private String accountId;
 
     @Column(length = 10, nullable = false)
     private int addScore;

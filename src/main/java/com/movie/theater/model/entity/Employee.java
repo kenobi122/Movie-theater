@@ -10,9 +10,9 @@ import javax.persistence.*;
 @Entity
 public class Employee extends BaseEntity{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(length = 10)
+    private String id;
 
     @Column(length = 10, nullable = false)
-    private int accountId;
+    private String accountId;
 }

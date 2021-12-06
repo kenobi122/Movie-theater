@@ -10,12 +10,13 @@ import javax.persistence.*;
 @Entity
 public class Member extends BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(length = 10)
+    private String memberId;
 
     @Column(length = 10, nullable = false)
     private int score;
 
+
     @Column(length = 10, nullable = false)
-    private int accountId;
+    private String accountId;
 }

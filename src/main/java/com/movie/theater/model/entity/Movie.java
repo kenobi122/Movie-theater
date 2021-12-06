@@ -12,8 +12,8 @@ import java.time.LocalDate;
 public class Movie extends BaseEntity{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(length = 10)
+    private String movieId;
 
     @Column(nullable = false)
     private String actor;

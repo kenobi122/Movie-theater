@@ -1,5 +1,6 @@
 package com.movie.theater.service.impl;
 
+import com.movie.theater.exception.AppException;
 import com.movie.theater.model.entity.Promotion;
 import com.movie.theater.model.request.PromotionRequest;
 import com.movie.theater.model.response.PromotionResponse;

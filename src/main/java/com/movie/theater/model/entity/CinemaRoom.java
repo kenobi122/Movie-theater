@@ -11,12 +11,12 @@ import javax.persistence.*;
 public class CinemaRoom extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int cinemaRoomId;
 
     @Column(nullable = false)
-    private String CinemaRoomName;
+    private String cinemaRoomName;
 
     @Column(length = 10, nullable = false)
-    private int SeatQuantity;
+    private int seatQuantity;
 
 }

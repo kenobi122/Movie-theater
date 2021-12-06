@@ -12,8 +12,8 @@ import java.time.LocalDate;
 @Entity
 public class Account extends BaseEntity{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(length = 10)
+    private String accountId;
 
     @Column(nullable = false)
     private String address;
