@@ -21,7 +21,7 @@ public class AccountController {
 
     @PostMapping("/register")
     public ResponseEntity<SystemResponse<Object>> create(@Valid @RequestBody AccountRequest request){
-         accountService.create(request);
+         accountService.createMember(request);
 
          return Response.ok();
     }
