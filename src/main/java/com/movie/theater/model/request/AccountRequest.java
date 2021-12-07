@@ -34,6 +34,8 @@ public class AccountRequest {
     @NotBlank
     private String address;
 
+    private String image;
+
     @NotBlank
     private String phoneNumber;
 }

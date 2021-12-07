@@ -31,11 +31,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.experimental</groupId>
-            <artifactId>spring-native</artifactId>
-            <version>${spring-native.version}</version>
-        </dependency>
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -81,25 +77,7 @@
                     </image>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.springframework.experimental</groupId>
-                <artifactId>spring-aot-maven-plugin</artifactId>
-                <version>${spring-native.version}</version>
-                <executions>
-                    <execution>
-                        <id>test-generate</id>
-                        <goals>
-                            <goal>test-generate</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>generate</id>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+
             <plugin>
                 <groupId>org.hibernate.orm.tooling</groupId>
                 <artifactId>hibernate-enhance-maven-plugin</artifactId>
@@ -150,39 +128,7 @@
                 <repackage.classifier>exec</repackage.classifier>
                 <native-buildtools.version>0.9.4</native-buildtools.version>
             </properties>
-            <dependencies>
-                <dependency>
-                    <groupId>org.graalvm.buildtools</groupId>
-                    <artifactId>junit-platform-native</artifactId>
-                    <version>${native-buildtools.version}</version>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.graalvm.buildtools</groupId>
-                        <artifactId>native-maven-plugin</artifactId>
-                        <version>${native-buildtools.version}</version>
-                        <executions>
-                            <execution>
-                                <id>test-native</id>
-                                <phase>test</phase>
-                                <goals>
-                                    <goal>test</goal>
-                                </goals>
-                            </execution>
-                            <execution>
-                                <id>build-native</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>build</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
+
         </profile>
     </profiles>
 
