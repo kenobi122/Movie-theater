@@ -16,7 +16,7 @@ public class Ticket extends BaseEntity{
     @Column(length = 10, nullable = false)
     private int price;
 
-    @Column(columnDefinition = "int(1) ")
+    @Column(columnDefinition = "int(1)")
     private int ticketType;
 
 }
