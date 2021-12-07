@@ -7,6 +7,7 @@ public class ErrorCode {
     public static final ApiError JWT_NOT_FOUND = new ApiError(HttpStatus.UNAUTHORIZED, "jwt not found");
     public static final ApiError FAIL_AUTHORIZATION = new ApiError(HttpStatus.UNAUTHORIZED,"authorization fail, please login again ");
 
+    public static final ApiError EMPLOYEE_NOT_FOUND = new ApiError(HttpStatus.BAD_REQUEST, "employee not found");
     public static final ApiError MEMBER_NOT_FOUND = new ApiError(HttpStatus.BAD_REQUEST, "member not found");
     public static final ApiError ACCOUNT_NOT_FOUND = new ApiError(HttpStatus.BAD_REQUEST, "Account or password not found");
     public static final ApiError WRONG_PASSWORD = new ApiError(HttpStatus.BAD_REQUEST, "Wrong password");

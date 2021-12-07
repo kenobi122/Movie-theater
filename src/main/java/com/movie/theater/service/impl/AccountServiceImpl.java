@@ -6,6 +6,7 @@ import com.movie.theater.model.entity.Account;
 import com.movie.theater.model.entity.Employee;
 import com.movie.theater.model.entity.Member;
 import com.movie.theater.model.request.AccountRequest;
+import com.movie.theater.model.response.AccountEmployeeResponse;
 import com.movie.theater.model.response.AccountMemberResponse;
 import com.movie.theater.repository.AccountRepository;
 import com.movie.theater.service.AccountService;
@@ -65,6 +66,20 @@ public class AccountServiceImpl implements AccountService {
         accountRepository.save(account);
 
         return mapper.mapMemberResponse(memberId, account);
+    }
+
+    @Override
+    public AccountEmployeeResponse editEmployee(String accountId, AccountRequest accountRequest) {
+        String employeeId = employeeInternalService.getEmployeeId(accountId);
+
+        Account account = accountRepository.findById(accountId).orElseThrow(()
+                -> new AppException(ErrorCode.ACCOUNT_NOT_FOUND));
+
+        account = mapper.map(account, accountRequest);
+
+        accountRepository.save(account);
+
+        return mapper.mapEmployeeResponse(employeeId, account);
     }
 
 

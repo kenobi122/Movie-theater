@@ -2,6 +2,7 @@ package com.movie.theater.controller;
 
 import com.movie.theater.model.common.SystemResponse;
 import com.movie.theater.model.request.AccountRequest;
+import com.movie.theater.model.response.AccountEmployeeResponse;
 import com.movie.theater.model.response.AccountMemberResponse;
 import com.movie.theater.model.response.Response;
 import com.movie.theater.service.AccountService;
@@ -37,6 +38,13 @@ public class AccountController {
             (@RequestParam @NotBlank String accountId, @Valid @RequestBody AccountRequest accountRequest){
 
         return Response.ok(accountService.editMember(accountId, accountRequest));
+    }
+
+    @PutMapping("/edit/employee")
+    public ResponseEntity<SystemResponse<AccountEmployeeResponse>> editEmployee
+            (@RequestParam @NotBlank String employeeId, @Valid @RequestBody AccountRequest accountRequest){
+
+        return Response.ok(accountService.editEmployee(employeeId, accountRequest));
     }
 
 
