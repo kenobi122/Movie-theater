@@ -5,5 +5,6 @@ import com.movie.theater.model.entity.Account;
 import java.util.List;
 
 public interface AccountInternalService {
-    List<Account> findByActiveAccount();
+    List<Account> findEmployeeByActiveAccount();
+    List<Account> findAccount();
 }

@@ -23,7 +23,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<AccountEmployeeResponse> get() {
         List<Employee> employeeList = employeeRepository.findAll();
-        List<Account> accountList = accountInternalService.findByActiveAccount();
+        List<Account> accountList = accountInternalService.findEmployeeByActiveAccount();
 
         List<AccountEmployeeResponse> accountEmployeeResponses = new ArrayList<>();
 

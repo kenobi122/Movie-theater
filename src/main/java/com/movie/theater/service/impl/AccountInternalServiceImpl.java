@@ -14,7 +14,12 @@ public class AccountInternalServiceImpl implements AccountInternalService {
     private final AccountRepository repository;
 
     @Override
-    public List<Account> findByActiveAccount() {
+    public List<Account> findEmployeeByActiveAccount() {
         return repository.findAccountByActive();
+    }
+
+    @Override
+    public List<Account> findAccount() {
+        return repository.findAll();
     }
 }
