@@ -6,8 +6,11 @@ import lombok.Data;
 import java.time.LocalDate;
 
 @Data
-public class AccountResponse {
+public class AccountMemberResponse {
+
     private String accountId;
+
+    private String memberId;
 
     private String account;
 
@@ -26,4 +29,6 @@ public class AccountResponse {
     private String address;
 
     private String phoneNumber;
+
+    private String image;
 }

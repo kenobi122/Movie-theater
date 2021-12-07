@@ -2,16 +2,15 @@ package com.movie.theater.controller;
 
 import com.movie.theater.model.common.SystemResponse;
 import com.movie.theater.model.request.AccountRequest;
+import com.movie.theater.model.response.AccountMemberResponse;
 import com.movie.theater.model.response.Response;
 import com.movie.theater.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 
 @RestController
 @RequestMapping("/account")
@@ -32,5 +31,13 @@ public class AccountController {
 
         return Response.ok();
     }
+
+    @PutMapping("/edit/member")
+    public ResponseEntity<SystemResponse<AccountMemberResponse>> editMember
+            (@RequestParam @NotBlank String accountId, @Valid @RequestBody AccountRequest accountRequest){
+
+        return Response.ok(accountService.editMember(accountId, accountRequest));
+    }
+
 
 }
