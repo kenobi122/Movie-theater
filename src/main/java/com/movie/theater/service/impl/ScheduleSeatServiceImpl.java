@@ -1,5 +1,7 @@
 package com.movie.theater.service.impl;
 
+import com.movie.theater.exception.AppException;
+import com.movie.theater.model.common.ErrorCode;
 import com.movie.theater.model.entity.ScheduleSeat;
 import com.movie.theater.model.entity.Seat;
 import com.movie.theater.model.request.ScheduleSeatRequest;
@@ -21,6 +23,16 @@ public class ScheduleSeatServiceImpl implements IScheduleSeatService {
 
     @Autowired
     private ScheduleSeatMapper mapper;
+
+    @Override
+    public void create(ScheduleSeatRequest scheduleSeatRequest) {
+        if (iScheduleSeatRepository.findById(scheduleSeatRequest.getScheduleId()).isPresent()) {
+            throw new AppException(ErrorCode.SCHEDULE_SEAT_ALREADY_EXISTS);
+        } else {
+            ScheduleSeat scheduleSeat = mapper.map(scheduleSeatRequest);
+            iScheduleSeatRepository.save(scheduleSeat);
+        }
+    }
 
     @Override
     public List<ScheduleSeatResponse> getAvailableScheSeat(ScheduleSeatRequest scheduleSeatRequest) {

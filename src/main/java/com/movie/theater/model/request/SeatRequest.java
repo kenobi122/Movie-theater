@@ -8,4 +8,5 @@ public class SeatRequest {
     private int cinemaRoomId;
     private String seatColumn;
     private int seatRow;
+    private int seatStatus;
 }

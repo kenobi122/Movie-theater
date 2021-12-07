@@ -8,4 +8,5 @@ import javax.persistence.Column;
 public class CinemaRoomRequest {
     private int cinemaRoomId;
     private String cinemaRoomName;
+    private int seatQuantity;
 }
