@@ -23,10 +23,6 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class AccountController {
     private final AccountService accountService;
-    @Autowired
-    private ITicketService iTicketService;
-    @Autowired
-    private ISeatService iSeatService;
 
     @PostMapping("/register/member")
     public ResponseEntity<SystemResponse<Object>> createMember(@Valid @RequestBody AccountRequest request){
@@ -40,17 +36,6 @@ public class AccountController {
         accountService.createEmployee(request);
 
         return Response.ok();
-    }
-    @GetMapping("/getTicket")
-    public ResponseEntity<SystemResponse<TicketResponse>> getTicket(@RequestBody TicketRequest ticketRequest) {
-        TicketResponse ticketResponse = iTicketService.read(ticketRequest);
-        return Response.ok(ticketResponse);
-    }
-    @GetMapping("/updateSeat")
-    public ResponseEntity<SystemResponse<Object>> updateTicket(@RequestBody SeatRequest seatRequest) {
-        iSeatService.updateStatus(seatRequest);
-        SeatResponse seatResponse = iSeatService.read(seatRequest);
-        return Response.ok(seatResponse);
     }
 
 }

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public interface ISeatService {
     public void creat(SeatRequest seatRequest);
     public SeatResponse read(SeatRequest seatRequest);
