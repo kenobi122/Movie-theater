@@ -32,12 +32,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     // config author
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .authorizeRequests().antMatchers("/loginPage","/account/**","/employee/**").permitAll()
-                .anyRequest().authenticated()
-                .and().formLogin()
-                .and()
-                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+//        http.csrf().disable()
+//                .authorizeRequests().antMatchers("/loginPage","/account/**","/employee/**").permitAll()
+//                .anyRequest().authenticated()
+//                .and().formLogin()
+//                .and()
+//                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
     @Bean
     @Override
