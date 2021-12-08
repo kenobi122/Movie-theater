@@ -5,7 +5,9 @@ import com.movie.theater.model.response.AccountMemberResponse;
 import com.movie.theater.model.response.AccountEmployeeResponse;
 
 public interface AccountService {
+
     void createMember(AccountRequest request);
+
     void createEmployee(AccountRequest request);
 
     AccountMemberResponse editMember(String accountId, AccountRequest accountRequest);

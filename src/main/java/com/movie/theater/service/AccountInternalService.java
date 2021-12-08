@@ -7,4 +7,6 @@ import java.util.List;
 public interface AccountInternalService {
     List<Account> findEmployeeByActiveAccount();
     List<Account> findAccount();
+    Account findAccountById(String accountId);
+    void deleteAccountById(String accoutnId);
 }

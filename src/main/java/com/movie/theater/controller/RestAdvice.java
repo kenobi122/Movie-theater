@@ -42,6 +42,13 @@ public class RestAdvice extends ResponseEntityExceptionHandler {
         return buildResponseEntity(ex.getApiError());
     }
 
+    @ExceptionHandler(Exception.class)
+    protected ResponseEntity<Object> handleApiError(Exception e){
+        ApiError apiError = new ApiError(HttpStatus.BAD_GATEWAY);
+        apiError.setMessage(e.getMessage());
+        return  buildResponseEntity(apiError);
+    }
+
     private ResponseEntity<Object> buildResponseEntity(ApiError apiError) {
         return new ResponseEntity<>(apiError, apiError.getStatus());
     }
