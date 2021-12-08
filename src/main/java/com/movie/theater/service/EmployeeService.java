@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface EmployeeService {
     List<AccountEmployeeResponse> get();
+
+    void deleteEmployee(String employeeId);
+
+    AccountEmployeeResponse getEmployeeByAccountName(String accountName);
 }
