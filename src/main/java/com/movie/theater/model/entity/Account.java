@@ -15,6 +15,7 @@ public class Account extends BaseEntity{
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
+    @Column (length = 100)
     private String accountId;
 
     @Column(nullable = false)
