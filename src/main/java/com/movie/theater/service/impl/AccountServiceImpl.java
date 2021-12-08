@@ -31,7 +31,7 @@ public class AccountServiceImpl implements AccountService {
             throw new AppException(ErrorCode.ACCOUNT_ALREADY_EXISTS);
         }
 
-        Account account = mapper.map(request);
+        Account account = mapper.mapMemberRequest(request);
         accountRepository.save(account);
 
         Member member = new Member();
@@ -46,7 +46,7 @@ public class AccountServiceImpl implements AccountService {
             throw new AppException(ErrorCode.ACCOUNT_ALREADY_EXISTS);
         }
 
-        Account account = mapper.map(request);
+        Account account = mapper.mapEmployeeRequest(request);
         accountRepository.save(account);
 
         Employee employee = new Employee();
