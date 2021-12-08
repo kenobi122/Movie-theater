@@ -13,6 +13,7 @@ public class Member extends BaseEntity {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
+    @Column (length = 100)
     private String memberId;
 
     @Column(columnDefinition = "int(10) default 0")
