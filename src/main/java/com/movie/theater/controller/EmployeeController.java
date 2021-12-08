@@ -17,9 +17,14 @@ import java.util.List;
 public class EmployeeController {
     private final EmployeeService employeeService;
 
-    @GetMapping("/get/active")
-    public ResponseEntity<SystemResponse<List<AccountEmployeeResponse>>> getEmployee(){
+    @GetMapping("/get-all/active")
+    public ResponseEntity<SystemResponse<List<AccountEmployeeResponse>>> getAllEmployee(){
        return Response.ok(employeeService.get());
+    }
+
+    @GetMapping("/get")
+    public ResponseEntity<SystemResponse<AccountEmployeeResponse>> getEmployeeByAccountName(@RequestParam String username){
+       return Response.ok(employeeService.getEmployeeByAccountName(username));
     }
 
     @DeleteMapping("/delete")

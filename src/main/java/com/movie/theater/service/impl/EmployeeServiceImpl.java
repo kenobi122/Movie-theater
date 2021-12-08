@@ -25,6 +25,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<AccountEmployeeResponse> get() {
         List<Employee> employeeList = repository.findAll();
+
         List<Account> accountList = accountInternalService.findEmployeeByActiveAccount();
 
         List<AccountEmployeeResponse> accountEmployeeResponses = new ArrayList<>();
@@ -42,10 +43,22 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    public AccountEmployeeResponse getEmployeeByAccountName(String username) {
+        Account account = accountInternalService.findAccountByName(username);
+
+        Employee employee = repository.findEmployeeByAccountId(account.getAccountId()).orElseThrow(()
+                -> new AppException(ErrorCode.EMPLOYEE_NOT_FOUND));
+
+        return mapper.mapEmployeeResponse(employee.getId(), account);
+    }
+
+    @Override
     public void deleteEmployee(String employeeId) {
         Employee employee = repository.findById(employeeId).orElseThrow(()
                 -> new AppException(ErrorCode.EMPLOYEE_NOT_FOUND));
 
         accountInternalService.deleteAccountById(employee.getAccountId());
     }
+
+
 }

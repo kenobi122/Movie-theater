@@ -9,4 +9,5 @@ public interface AccountInternalService {
     List<Account> findAccount();
     Account findAccountById(String accountId);
     void deleteAccountById(String accoutnId);
+    Account findAccountByName(String username);
 }

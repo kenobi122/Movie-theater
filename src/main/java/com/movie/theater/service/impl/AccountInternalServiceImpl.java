@@ -37,4 +37,9 @@ public class AccountInternalServiceImpl implements AccountInternalService {
     public void deleteAccountById(String accountId) {
         repository.deleteAccountById(accountId);
     }
+
+    @Override
+    public Account findAccountByName(String username) {
+        return repository.findAccountByUsername(username).orElse(new Account());
+    }
 }
