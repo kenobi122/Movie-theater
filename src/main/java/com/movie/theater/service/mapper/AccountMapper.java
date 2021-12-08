@@ -4,12 +4,23 @@ import com.movie.theater.model.entity.Account;
 import com.movie.theater.model.request.AccountRequest;
 import com.movie.theater.model.response.AccountEmployeeResponse;
 import com.movie.theater.model.response.AccountMemberResponse;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
 public class AccountMapper {
+    private final PasswordEncoder passwordEncoder;
 
-    public Account map(AccountRequest request){
+    public AccountMapper(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
+
+
+    /**
+     * map accountRequest to Member Account
+     * @return account
+     */
+    public Account mapMemberRequest(AccountRequest request){
         Account account = new Account();
 
         account.setStatus(1);
@@ -22,12 +33,39 @@ public class AccountMapper {
         account.setDateOfBirth(request.getDateOfBirth());
         account.setPhoneNumber(request.getPhoneNumber());
         account.setIdentityCard(request.getIdentityCard());
-        account.setPassword(request.getPassword());
+        account.setPassword(passwordEncoder.encode(request.getPassword()));
         account.setImage(request.getImage());
 
         return account;
     }
 
+    /**
+     * accountRequest to Employee Account
+     * @return account
+     */
+    public Account mapEmployeeRequest(AccountRequest request){
+        Account account = new Account();
+
+        account.setStatus(1);
+        account.setRoleId(2);
+        account.setUsername(request.getAccount());
+        account.setAddress(request.getAddress());
+        account.setEmail(request.getEmail());
+        account.setGender(request.getGender());
+        account.setFullName(request.getFullName());
+        account.setDateOfBirth(request.getDateOfBirth());
+        account.setPhoneNumber(request.getPhoneNumber());
+        account.setIdentityCard(request.getIdentityCard());
+        account.setPassword(passwordEncoder.encode(request.getPassword()));
+        account.setImage(request.getImage());
+
+        return account;
+    }
+
+    /**
+     * map update account
+     * @return account update
+     */
     public Account map(Account account, AccountRequest request){
 
         account.setUsername(request.getAccount());
@@ -44,6 +82,10 @@ public class AccountMapper {
         return account;
     }
 
+    /**
+     * map member response
+     * @return AccountMemberResponse
+     */
     public AccountMemberResponse mapMemberResponse(String memberId, Account account){
         AccountMemberResponse accountMemberResponse = new AccountMemberResponse();
 
@@ -63,6 +105,10 @@ public class AccountMapper {
         return accountMemberResponse;
     }
 
+    /**
+     * map Employee response
+     * @return AccountEmployeeResponse
+     */
     public AccountEmployeeResponse mapEmployeeResponse(String employeeId, Account account){
         AccountEmployeeResponse accountEmployeeResponse = new AccountEmployeeResponse();
 
