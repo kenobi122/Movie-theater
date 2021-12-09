@@ -11,10 +11,9 @@ import com.movie.theater.service.ITicketService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/seat")
@@ -25,15 +24,30 @@ public class SeatController {
     @Autowired
     private ITicketService iTicketService;
 
+    @PostMapping("/createSeat")
+    public ResponseEntity<SystemResponse<Object>> creatSeat(@RequestBody SeatRequest seatRequest) {
+        System.out.println("createSeat");
+        iSeatService.creat(seatRequest);
+        System.out.println("createSeat done");
+        return Response.ok();
+    }
+
     @GetMapping("/getTicket")
     public ResponseEntity<SystemResponse<TicketResponse>> getTicket(@RequestBody TicketRequest ticketRequest) {
         TicketResponse ticketResponse = iTicketService.read(ticketRequest);
         return Response.ok(ticketResponse);
     }
+
     @GetMapping("/updateSeat")
-    public ResponseEntity<SystemResponse<Object>> updateTicket(@RequestBody SeatRequest seatRequest) {
+    public ResponseEntity<SystemResponse<Object>> updateSeat(@RequestBody SeatRequest seatRequest) {
         iSeatService.updateStatus(seatRequest);
         SeatResponse seatResponse = iSeatService.read(seatRequest);
         return Response.ok(seatResponse);
+    }
+    @GetMapping("/getAvailableSeat")
+    public ResponseEntity<SystemResponse<Object>> getAvailableSeat(@RequestBody SeatRequest seatRequest) {
+        List<String> list = iSeatService.getAvailableSeat(seatRequest.getCinemaRoomId());
+
+        return Response.ok(list);
     }
 }

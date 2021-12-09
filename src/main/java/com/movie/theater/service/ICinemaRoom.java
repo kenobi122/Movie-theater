@@ -6,7 +6,7 @@ import com.movie.theater.model.response.CinemaRoomResponse;
 import java.util.List;
 
 public interface ICinemaRoom {
-    public void create(CinemaRoomRequest cinemaRoomRequest);
-    public List<CinemaRoomResponse> getAllCinemaRoom();
-    public CinemaRoomResponse getCinemaRoomInfo(int cinemaRoomId);
+    void create(CinemaRoomRequest cinemaRoomRequest);
+    List<CinemaRoomResponse> getAllCinemaRoom();
+    CinemaRoomResponse getCinemaRoomInfo(int cinemaRoomId);
 }

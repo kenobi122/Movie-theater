@@ -8,6 +8,7 @@ import java.time.LocalDate;
 
 @Data
 public class PromotionRequest {
+    private int promotionId;
     @NotBlank
     private String title;
 
