@@ -21,7 +21,7 @@ public class CinemaRoom extends BaseEntity{
     @Column(length = 10, nullable = false)
     private int seatQuantity;
 
-    @OneToMany(mappedBy = "cinemaRoom")
+    @OneToMany(mappedBy = "cinemaRoom", cascade = CascadeType.ALL)
     private List<Movie> movieList = new ArrayList<>();
 
     public Integer getCinemaRoomId() {

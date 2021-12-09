@@ -96,7 +96,6 @@ public class MovieMapper {
 
     public Movie mapDtoToEntity(Movie result,MovieRequest movieRequest) {
         result.setActor(movieRequest.getActor());
-        result.setCinemaRoom(cinemaRoomRepository.findByCinemaRoomId(movieRequest.getCinemaRoomId()));
         result.setContent(movieRequest.getContent());
         result.setDirector(movieRequest.getDirector());
         result.setDuration(movieRequest.getDuration());

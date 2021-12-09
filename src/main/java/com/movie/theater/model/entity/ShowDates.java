@@ -28,4 +28,7 @@ public class ShowDates extends BaseEntity {
         super();
         this.dateName = date_name;
     }
+
+    public ShowDates() {
+    }
 }
