@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ShowDateRepository extends JpaRepository<ShowDates, Integer> {
+    ShowDates findByShowDateId(Integer showDateId);
 }
