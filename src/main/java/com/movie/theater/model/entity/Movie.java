@@ -7,7 +7,9 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -59,22 +61,25 @@ public class Movie extends BaseEntity{
     private CinemaRoom cinemaRoom;
 
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinTable(name = "movie_schedule", joinColumns = @JoinColumn(name = "movieId"),
             inverseJoinColumns = @JoinColumn(name = "scheduleId"))
-    private List<Schedule> schedules = new ArrayList<>();
+    private Set<Schedule> schedules = new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "movie_time", joinColumns = @JoinColumn(name = "movieId"),
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinTable(name = "movie_type", joinColumns = @JoinColumn(name = "movieId"),
             inverseJoinColumns = @JoinColumn(name = "typeId"))
-    private List<Type> types  = new ArrayList<>();
+    private Set<Type> types  = new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinTable(name = "movie_date", joinColumns = @JoinColumn(name = "movieId"),
             inverseJoinColumns = @JoinColumn(name = "showDateId"))
-    private List<ShowDates> showDates = new ArrayList<>();
+    private Set<ShowDates> showDates = new HashSet<>();
 
-    public Movie(String movieId, String actor, String content, String director, int duration, LocalDate fromDate, String movieProductionCompany, LocalDate toDate, String version, String movieNameEnglish, String movieNameVn, String largeImage, String smallImage, CinemaRoom cinemaRoom, List<Schedule> schedules, List<Type> types, List<ShowDates> showDates) {
+    public Movie(String movieId, String actor, String content, String director, int duration, LocalDate fromDate,
+                 String movieProductionCompany, LocalDate toDate, String version, String movieNameEnglish,
+                 String movieNameVn, String largeImage, String smallImage, CinemaRoom cinemaRoom,
+                 Set<Schedule> schedules, Set<Type> types, Set<ShowDates> showDates) {
         this.movieId = movieId;
         this.actor = actor;
         this.content = content;
@@ -210,27 +215,27 @@ public class Movie extends BaseEntity{
         this.cinemaRoom = cinemaRoom;
     }
 
-    public List<Schedule> getSchedules() {
+    public Set<Schedule> getSchedules() {
         return schedules;
     }
 
-    public void setSchedules(List<Schedule> schedules) {
+    public void setSchedules(Set<Schedule> schedules) {
         this.schedules = schedules;
     }
 
-    public List<Type> getTypes() {
+    public Set<Type> getTypes() {
         return types;
     }
 
-    public void setTypes(List<Type> types) {
+    public void setTypes(Set<Type> types) {
         this.types = types;
     }
 
-    public List<ShowDates> getShowDates() {
+    public Set<ShowDates> getShowDates() {
         return showDates;
     }
 
-    public void setShowDates(List<ShowDates> showDates) {
+    public void setShowDates(Set<ShowDates> showDates) {
         this.showDates = showDates;
     }
 }

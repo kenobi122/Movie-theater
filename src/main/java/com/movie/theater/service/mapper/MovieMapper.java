@@ -13,7 +13,9 @@ import com.movie.theater.service.TypeService;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Component
 public class MovieMapper {
@@ -69,7 +71,7 @@ public class MovieMapper {
         result.setToDate(movieRequest.getToDate());
         result.setVersion(movieRequest.getVersion());
 
-        List<ShowDates> showDatesList = new ArrayList<>();
+        Set<ShowDates> showDatesList = new HashSet<>();
         movieRequest.getShowDateIds().stream().forEach(
                 showDateId -> {
                     showDatesList.add(showDatesService.findByShowDateId(showDateId));
@@ -77,14 +79,14 @@ public class MovieMapper {
         );
         result.setShowDates(showDatesList);
 
-        List<Schedule> scheduleList = new ArrayList<>();
+        Set<Schedule> scheduleList = new HashSet<>();
         movieRequest.getScheduleIds().stream().forEach(
                 scheduleId -> {
                     scheduleList.add(scheduleService.findOne(scheduleId));
                 }
         );
         result.setSchedules(scheduleList);
-        List<Type> typeList = new ArrayList<>();
+        Set<Type> typeList = new HashSet<>();
         movieRequest.getTypeIds().stream().forEach(
                 typeId -> {
                     typeList.add(typeService.findByTypeId(typeId));
@@ -108,7 +110,7 @@ public class MovieMapper {
         result.setToDate(movieRequest.getToDate());
         result.setVersion(movieRequest.getVersion());
 
-        List<ShowDates> showDatesList = new ArrayList<>();
+        Set<ShowDates> showDatesList = new HashSet<>();
         movieRequest.getShowDateIds().stream().forEach(
                 showDateId -> {
                     showDatesList.add(showDatesService.findByShowDateId(showDateId));
@@ -116,14 +118,14 @@ public class MovieMapper {
         );
         result.setShowDates(showDatesList);
 
-        List<Schedule> scheduleList = new ArrayList<>();
+        Set<Schedule> scheduleList = new HashSet<>();
         movieRequest.getScheduleIds().stream().forEach(
                 scheduleId -> {
                     scheduleList.add(scheduleService.findOne(scheduleId));
                 }
         );
         result.setSchedules(scheduleList);
-        List<Type> typeList = new ArrayList<>();
+        Set<Type> typeList = new HashSet<>();
         movieRequest.getTypeIds().stream().forEach(
                 typeId -> {
                     typeList.add(typeService.findByTypeId(typeId));
