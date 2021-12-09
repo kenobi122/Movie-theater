@@ -10,11 +10,13 @@ import com.movie.theater.repository.ICinemaRoomRepository;
 import com.movie.theater.service.ICinemaRoom;
 import com.movie.theater.service.mapper.CinemaRoomMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Service
 public class CinemaRoomImpl implements ICinemaRoom {
     @Autowired
     private ICinemaRoomRepository iCinemaRoomRepository;
@@ -35,12 +37,10 @@ public class CinemaRoomImpl implements ICinemaRoom {
         List<CinemaRoom> scheduleSeat = iCinemaRoomRepository.findAll();
         return scheduleSeat.stream().map(mapper::map).collect(Collectors.toList());
     }
+
     public CinemaRoomResponse getCinemaRoomInfo(int cinemaRoomId) {
-        Optional<CinemaRoom> scheduleSeat = iCinemaRoomRepository.findById(cinemaRoomId);
-        CinemaRoomResponse cinemaRoomResponse = new CinemaRoomResponse();
-        cinemaRoomResponse.setCinemaRoomId(scheduleSeat.get().getCinemaRoomId());
-        cinemaRoomResponse.setCinemaRoomName(scheduleSeat.get().getCinemaRoomName());
-        cinemaRoomResponse.setSeatQuantity(scheduleSeat.get().getSeatQuantity());
+        Optional<CinemaRoom> cinemaRoom = iCinemaRoomRepository.findById(cinemaRoomId);
+        CinemaRoomResponse cinemaRoomResponse = mapper.map(cinemaRoom.get());
         return cinemaRoomResponse;
     }
 }

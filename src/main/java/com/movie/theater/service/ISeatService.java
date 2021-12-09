@@ -8,8 +8,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 public interface ISeatService {
-    public void creat(SeatRequest seatRequest);
-    public SeatResponse read(SeatRequest seatRequest);
-    public void updateStatus(SeatRequest seatRequest);
-    public List<String> getAvailableSeat(int cinemaRoomId);
+    void creat(SeatRequest seatRequest);
+    SeatResponse read(SeatRequest seatRequest);
+    void updateStatus(SeatRequest seatRequest);
+    List<String> getAvailableSeat(int cinemaRoomId);
+    List<SeatResponse> getAllSeatBooked(SeatRequest SeatRequest);
 }
