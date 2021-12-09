@@ -1,5 +1,6 @@
 package com.movie.theater.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -19,6 +20,7 @@ public class Schedule extends BaseEntity {
     private String scheduleTime;
 
     @ManyToMany(mappedBy = "schedules")
+    @JsonIgnore
     private List<Movie> movies = new ArrayList<>();
 
     public Schedule(String scheduleTime) {

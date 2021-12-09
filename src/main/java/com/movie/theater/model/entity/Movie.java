@@ -2,6 +2,7 @@ package com.movie.theater.model.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -14,7 +15,9 @@ import java.util.List;
 public class Movie extends BaseEntity{
 
     @Id
-    @Column(length = 10)
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+//    @Column(length = 1000)
     private String movieId;
 
     @Column(nullable = false)

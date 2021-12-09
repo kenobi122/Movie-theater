@@ -1,5 +1,6 @@
 package com.movie.theater.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -19,11 +20,16 @@ public class Type extends BaseEntity{
     private String typeName;
 
     @ManyToMany(mappedBy = "types")
+    @JsonIgnore
     private List<Movie> movies = new ArrayList<>();
 
     public Type(String typeName) {
         super();
         this.typeName = typeName;
+    }
+
+    public Type() {
+
     }
 
     public Integer getTypeId() {
