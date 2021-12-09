@@ -1,7 +1,6 @@
 package com.movie.theater.controller;
 
 import com.movie.theater.model.common.SystemResponse;
-import com.movie.theater.model.entity.Seat;
 import com.movie.theater.model.request.CinemaRoomRequest;
 import com.movie.theater.model.response.CinemaRoomResponse;
 import com.movie.theater.model.response.Response;
@@ -9,7 +8,10 @@ import com.movie.theater.service.ICinemaRoom;
 import com.movie.theater.service.ISeatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
