@@ -72,7 +72,7 @@ public class MovieMapper {
         result.setVersion(movieRequest.getVersion());
 
         Set<ShowDates> showDatesList = new HashSet<>();
-        movieRequest.getShowDateIds().stream().forEach(
+        showDatesService.saveFromMovieRequest(movieRequest).stream().forEach(
                 showDateId -> {
                     showDatesList.add(showDatesService.findByShowDateId(showDateId));
                 }
