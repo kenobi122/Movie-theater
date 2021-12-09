@@ -1,17 +1,20 @@
 package com.movie.theater.service;
 
-import com.movie.theater.DTO.MovieDTO;
+import com.movie.theater.DTO.request.MovieRequest;
+import com.movie.theater.DTO.response.MovieResponse;
 import com.movie.theater.model.entity.Movie;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
 public interface MovieService {
-    MovieDTO save(MovieDTO movie);
-    MovieDTO update(MovieDTO updateMovie);
+    MovieResponse save(MovieRequest movieRequest);
+    MovieResponse update(MovieRequest updateMovie);
     void delete(String id);
-    List<MovieDTO> findAll(Pageable pageble);
-    List<MovieDTO> findAll();
+    List<MovieResponse> findAll(Pageable pageble);
+    List<MovieResponse> findAll();
     int getTotalItem();
-    MovieDTO findOne(String id);
+    MovieResponse findOne(String id);
+
+    void save(Movie movie);
 }

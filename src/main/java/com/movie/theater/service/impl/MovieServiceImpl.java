@@ -1,19 +1,20 @@
 package com.movie.theater.service.impl;
 
-import com.movie.theater.DTO.MovieDTO;
+import com.movie.theater.DTO.request.MovieRequest;
+import com.movie.theater.DTO.response.MovieResponse;
 import com.movie.theater.model.entity.*;
 import com.movie.theater.repository.CinemaRoomRepository;
 import com.movie.theater.repository.MovieRepository;
 import com.movie.theater.service.MovieService;
+import com.movie.theater.service.ShowDatesService;
 import com.movie.theater.service.mapper.MovieMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class MovieServiceImpl implements MovieService {
@@ -21,62 +22,70 @@ public class MovieServiceImpl implements MovieService {
     private final MovieRepository movieRepository;
     private final CinemaRoomRepository cinemaRoomRepository;
     private final MovieMapper movieMapper;
+    private final ShowDatesService showDatesService;
+
 
     @Autowired
-    public MovieServiceImpl(MovieRepository movieRepository, CinemaRoomRepository cinemaRoomRepository, MovieMapper movieMapper) {
+    public MovieServiceImpl(MovieRepository movieRepository, CinemaRoomRepository cinemaRoomRepository, MovieMapper movieMapper, ShowDatesService showDatesService) {
         this.movieRepository = movieRepository;
         this.cinemaRoomRepository = cinemaRoomRepository;
         this.movieMapper = movieMapper;
+        this.showDatesService = showDatesService;
     }
 
     @Override
-    public MovieDTO save(MovieDTO movie) {
+    @Transactional
+    public MovieResponse save(MovieRequest movie) {
+        // save new movie
         CinemaRoom cinemaRoom = cinemaRoomRepository.findCinemaRoomByCinemaRoomName(movie.getCinemaRoom());
         Movie newMovie = new Movie();
         newMovie = movieMapper.mapDtoToEntity(movie);
         newMovie.setCinemaRoom(cinemaRoom);
-        newMovie.setSchedules(Arrays.asList(new Schedule("09:00")));
-        newMovie.setTypes(Arrays.asList(new Type("Hanh dong")));
-        newMovie.setShowDates(Arrays.asList(new ShowDates("date name")));
-        return movieMapper.mapEntityToDto(movieRepository.save(newMovie));
+        movieRepository.save(newMovie);
+        return movieMapper.mapEntityToDto(newMovie);
     }
 
     @Override
-    public MovieDTO update(MovieDTO updateMovie) {
+    @Transactional
+    public MovieResponse update(MovieRequest updateMovie) {
         CinemaRoom cinemaRoom = cinemaRoomRepository.findCinemaRoomByCinemaRoomName(updateMovie.getCinemaRoom());
         Movie newUpdateMovie = new Movie();
-        newUpdateMovie = movieMapper.mapDtoToEntity(updateMovie);
-        newUpdateMovie.setCinemaRoom(cinemaRoom);
+        if (updateMovie.getMovieId() != null) {
+            Movie oldMovie = movieRepository.findMovieByMovieId(updateMovie.getMovieId());
+            oldMovie.setCinemaRoom(cinemaRoom);
+            newUpdateMovie = movieMapper.mapDtoToEntity(oldMovie, updateMovie);
+        }
         return movieMapper.mapEntityToDto(movieRepository.save(newUpdateMovie));
     }
 
     @Override
+    @Transactional
     public void delete(String id) {
         movieRepository.deleteById(id);
     }
 
     @Override
-    public List<MovieDTO> findAll(Pageable pageable) {
-        List<MovieDTO> movieDTOList = new ArrayList<>();
+    public List<MovieResponse> findAll(Pageable pageable) {
+        List<MovieResponse> movieResponseList = new ArrayList<>();
         List<Movie> movieList = movieRepository.findAll(pageable).getContent();
         for (Movie item: movieList
              ) {
-            MovieDTO movieDTO = movieMapper.mapEntityToDto(item);
-            movieDTOList.add(movieDTO);
+            MovieResponse movieResponse = movieMapper.mapEntityToDto(item);
+            movieResponseList.add(movieResponse);
         }
-        return movieDTOList;
+        return movieResponseList;
     }
 
     @Override
-    public List<MovieDTO> findAll() {
-        List<MovieDTO> movieDTOList = new ArrayList<>();
+    public List<MovieResponse> findAll() {
+        List<MovieResponse> movieResponseList = new ArrayList<>();
         List<Movie> movieList = movieRepository.findAll();
         for (Movie item: movieList
         ) {
-            MovieDTO movieDTO = movieMapper.mapEntityToDto(item);
-            movieDTOList.add(movieDTO);
+            MovieResponse movieResponse = movieMapper.mapEntityToDto(item);
+            movieResponseList.add(movieResponse);
         }
-        return movieDTOList;
+        return movieResponseList;
     }
 
     @Override
@@ -85,8 +94,13 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public MovieDTO findOne(String id) {
+    public MovieResponse findOne(String id) {
         Movie movie = movieRepository.findMovieByMovieId(id);
         return movieMapper.mapEntityToDto(movie);
+    }
+
+    @Override
+    public void save(Movie movie) {
+        movieRepository.save(movie);
     }
 }

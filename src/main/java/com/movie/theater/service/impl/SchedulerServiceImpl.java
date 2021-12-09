@@ -36,8 +36,7 @@ public class SchedulerServiceImpl implements ScheduleService {
     }
 
     @Override
-    public ScheduleDTO findOne(Integer scheduleId) {
-        Schedule schedule = scheduleRepository.findByScheduleId(scheduleId);
-        return scheduleMapper.mapEntityToDto(schedule);
+    public Schedule findOne(Integer scheduleId) {
+        return scheduleRepository.findByScheduleId(scheduleId);
     }
 }

@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface TypeService {
     List<TypeDTO> findAll();
-    TypeDTO findByTypeId(Integer typeId);
+    Type findByTypeId(Integer typeId);
 }

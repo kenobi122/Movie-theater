@@ -35,8 +35,7 @@ public class TypeServiceImpl implements TypeService {
     }
 
     @Override
-    public TypeDTO findByTypeId(Integer typeId) {
-        Type type = typeRepository.findByTypeId(typeId);
-        return typeMapper.mapEntityToDto(type);
+    public Type findByTypeId(Integer typeId) {
+        return typeRepository.findByTypeId(typeId);
     }
 }

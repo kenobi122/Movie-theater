@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface ScheduleService {
     List<ScheduleDTO> findAll();
-    ScheduleDTO findOne(Integer scheduleId);
+    Schedule findOne(Integer scheduleId);
 }
