@@ -35,7 +35,6 @@ public class MovieMapper {
 
     public MovieResponse mapEntityToDto(Movie movieEntity) {
         MovieResponse result = new MovieResponse();
-        result.setMovieId(movieEntity.getMovieId());
         result.setActor(movieEntity.getActor());
         result.setCinemaRoom(movieEntity.getCinemaRoom().getCinemaRoomName());
         result.setContent(movieEntity.getContent());
@@ -50,8 +49,29 @@ public class MovieMapper {
         result.setToDate(movieEntity.getToDate());
         result.setVersion(movieEntity.getVersion());
 
-//        List<Integer> scheduleIds = new ArrayList<>();
-//        movieEntity.getSchedules().stream().forEach(schedule -> scheduleIds.add(scheduleService.findOne(schedule.getScheduleId()).getScheduleId()));
+        List<ShowDates> showDates = new ArrayList<>();
+        for (ShowDates item: movieEntity.getShowDates()
+             ) {
+            ShowDates showDates1 = new ShowDates();
+            showDates1.setShowDate(item.getShowDate());
+            showDates1.setDateName(item.getDateName());
+            showDates.add(showDates1);
+        }
+        result.setShowDates(showDates);
+
+        List<String> scheduleTimes = new ArrayList<>();
+        for (Schedule item: movieEntity.getSchedules()
+             ) {
+            scheduleTimes.add(item.getScheduleTime());
+        }
+        result.setScheduleTimes(scheduleTimes);
+
+        List<String> types = new ArrayList<>();
+        for (Type item: movieEntity.getTypes()
+             ) {
+            types.add(item.getTypeName());
+        }
+        result.setTypes(types);
         return result;
     }
 

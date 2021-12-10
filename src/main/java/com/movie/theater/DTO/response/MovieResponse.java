@@ -1,17 +1,21 @@
 package com.movie.theater.DTO.response;
 
+import com.movie.theater.model.entity.CinemaRoom;
+import com.movie.theater.model.entity.Schedule;
+import com.movie.theater.model.entity.ShowDates;
+import com.movie.theater.model.entity.Type;
 import lombok.Data;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Data
 public class MovieResponse {
-    private String movieId;
     private String actor;
-//    private int cinemaRoomId;
-//    private List<Integer> scheduleIds;
-//    private List<Integer> typeIds;
+    private List<String> scheduleTimes;
+    private List<String> types;
+    private List<ShowDates> showDates;
     private String cinemaRoom;
     private String content;
     private String director;
@@ -25,20 +29,28 @@ public class MovieResponse {
     private String largeImage;
     private String smallImage;
 
-    public String getMovieId() {
-        return movieId;
-    }
-
-    public void setMovieId(String movieId) {
-        this.movieId = movieId;
-    }
-
     public String getActor() {
         return actor;
     }
 
     public void setActor(String actor) {
         this.actor = actor;
+    }
+
+    public List<String> getScheduleTimes() {
+        return scheduleTimes;
+    }
+
+    public void setScheduleTimes(List<String> scheduleTimes) {
+        this.scheduleTimes = scheduleTimes;
+    }
+
+    public List<ShowDates> getShowDates() {
+        return showDates;
+    }
+
+    public void setShowDates(List<ShowDates> showDates) {
+        this.showDates = showDates;
     }
 
     public String getCinemaRoom() {
@@ -137,3 +149,4 @@ public class MovieResponse {
         this.smallImage = smallImage;
     }
 }
+
