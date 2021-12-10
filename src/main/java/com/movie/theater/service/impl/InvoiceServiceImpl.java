@@ -17,7 +17,6 @@ public class InvoiceServiceImpl implements InvoiceService {
     private final InvoiceRepository invoiceRepository;
     private final InvoiceMapper invoiceMapper;
 
-    @Autowired
     public InvoiceServiceImpl(InvoiceRepository invoiceRepository, InvoiceMapper invoiceMapper) {
         this.invoiceRepository = invoiceRepository;
         this.invoiceMapper = invoiceMapper;
@@ -32,6 +31,16 @@ public class InvoiceServiceImpl implements InvoiceService {
             invoiceResponseList.add(invoiceResponse);
         }
         return invoiceResponseList;
+    }
+
+    @Override
+    public Invoice findOne(String invoiceId) {
+        return invoiceRepository.findById(invoiceId).get();
+    }
+
+    @Override
+    public Invoice findByAccountId(String accountId) {
+        return invoiceRepository.findByAccountId(accountId);
     }
 
     @Override
