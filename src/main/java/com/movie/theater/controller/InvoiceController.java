@@ -1,5 +1,6 @@
 package com.movie.theater.controller;
 
+import com.movie.theater.model.entity.Invoice;
 import com.movie.theater.model.request.InvoiceRequest;
 import com.movie.theater.model.response.InvoiceResponse;
 import com.movie.theater.service.InvoiceService;
@@ -22,6 +23,16 @@ public class InvoiceController {
     @GetMapping(value = "/get-invoices")
     public List<InvoiceResponse> getInvoices(){
         return invoiceService.findAll();
+    }
+
+    @GetMapping(value = "/{invoiceId}")
+    public Invoice getInvoice(@PathVariable("invoiceId") String invoiceId) {
+        return invoiceService.findOne(invoiceId);
+    }
+
+    @GetMapping(value = "/account/{accountId}")
+    public Invoice getInvoiceByAccount(@PathVariable("accountId") String accountId) {
+        return invoiceService.findByAccountId(accountId);
     }
 
     @PostMapping(value = "/post")
