@@ -1,5 +1,7 @@
 package com.movie.theater.service.impl;
 
+import com.movie.theater.exception.AppException;
+import com.movie.theater.model.common.ErrorCode;
 import com.movie.theater.model.entity.Account;
 import com.movie.theater.model.entity.Member;
 import com.movie.theater.model.response.AccountMemberResponse;
@@ -21,7 +23,7 @@ public class MemberServiceImpl implements MemberService {
     private final AccountInternalService accountInternalService;
 
     @Override
-    public List<AccountMemberResponse> get() {
+    public List<AccountMemberResponse> getAll() {
         List<Account> accountList = accountInternalService.findAccount();
         List<Member> memberList = repository.findAll();
 
@@ -37,5 +39,16 @@ public class MemberServiceImpl implements MemberService {
         }
 
         return accountMemberResponses;
+    }
+
+    @Override
+    public AccountMemberResponse get(String memberId) {
+        Member member = repository.findById(memberId).orElseThrow(()
+                -> new AppException(ErrorCode.MEMBER_NOT_FOUND));
+
+        Account account = accountInternalService.findAccountById(member.getAccountId());
+
+        return mapper.mapMemberResponse(member.getMemberId(), account);
+
     }
 }
