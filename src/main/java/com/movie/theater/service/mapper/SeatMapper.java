@@ -30,4 +30,15 @@ public class SeatMapper {
 
         return seat;
     }
+    public Seat map(SeatResponse seatResponse) {
+        Seat seat = new Seat();
+
+        seat.setSeatId(seatResponse.getSeatId());
+        seat.setCinemaRoomId(seatResponse.getCinemaRoomId());
+        seat.setSeatColumn(seatResponse.getSeatColumn());
+        seat.setSeatRow(seatResponse.getSeatRow());
+        seat.setSeatStatus(seatResponse.getSeatStatus());
+        seat.setSeatType(0);
+        return seat;
+    }
 }
