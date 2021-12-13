@@ -51,4 +51,14 @@ public class MemberServiceImpl implements MemberService {
         return mapper.mapMemberResponse(member.getMemberId(), account);
 
     }
+
+    @Override
+    public AccountMemberResponse getMemberByAccountName(String username) {
+        Account account = accountInternalService.findAccountByName(username);
+
+        Member member = repository.findMemberByAccountId(account.getAccountId()).orElseThrow(()
+                -> new AppException(ErrorCode.MEMBER_NOT_FOUND));
+
+        return mapper.mapMemberResponse(member.getMemberId(), account);
+    }
 }

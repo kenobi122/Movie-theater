@@ -22,7 +22,7 @@ public class EmployeeController {
        return Response.ok(employeeService.get());
     }
 
-    @GetMapping("/get")
+    @GetMapping("/get-by-username")
     public ResponseEntity<SystemResponse<AccountEmployeeResponse>> getEmployeeByAccountName(@RequestParam String username){
        return Response.ok(employeeService.getEmployeeByAccountName(username));
     }

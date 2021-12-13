@@ -1,6 +1,7 @@
 package com.movie.theater.controller;
 
 import com.movie.theater.model.common.SystemResponse;
+import com.movie.theater.model.response.AccountEmployeeResponse;
 import com.movie.theater.model.response.AccountMemberResponse;
 import com.movie.theater.model.response.Response;
 import com.movie.theater.service.MemberService;
@@ -28,5 +29,10 @@ public class MemberController {
     @GetMapping("/get-member")
     public ResponseEntity<SystemResponse<AccountMemberResponse>> getById(@RequestParam @NotBlank String memberId){
         return Response.ok(memberService.get(memberId));
+    }
+
+    @GetMapping("/get-by-username")
+    public ResponseEntity<SystemResponse<AccountMemberResponse>> getEmployeeByAccountName(@RequestParam String username){
+        return Response.ok(memberService.getMemberByAccountName(username));
     }
 }
