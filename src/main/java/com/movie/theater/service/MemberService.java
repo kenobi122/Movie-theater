@@ -8,4 +8,6 @@ public interface MemberService {
     List<AccountMemberResponse> getAll();
 
     AccountMemberResponse get(String memberId);
+
+    AccountMemberResponse getMemberByAccountName(String username);
 }
