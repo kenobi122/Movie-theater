@@ -19,7 +19,7 @@ public class Movie extends BaseEntity{
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-//    @Column(length = 1000)
+    @Column(length = 100)
     private String movieId;
 
     @Column(nullable = false)
